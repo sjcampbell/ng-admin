@@ -32,8 +32,7 @@ function maChoiceField($compile) {
                         scope.refreshDelay = field.remoteCompleteOptions().refreshDelay;
                         refreshAttributes = 'refresh-delay="refreshDelay" refresh="refresh({ $search: $select.search })"';
                     }
-
-                    var choices = scope.choices() ? scope.choices : (field.choices ? field.choices() : []);
+                    var choices = (typeof scope.choices == 'function' && scope.choices()) ? scope.choices() : (field.choices ? field.choices() : []);
                     var attributes = field.attributes();
                     scope.placeholder = (attributes && attributes.placeholder) || 'Filter values';
 
