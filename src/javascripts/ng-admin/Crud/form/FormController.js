@@ -47,7 +47,7 @@ FormController.prototype.submitCreation = function ($event) {
     }
     var entity = this.entity;
     var view = this.view;
-    var route = !entity.editionView().enabled ? 'show' : 'edit';
+    var route = !entity.editionView().enabled ? 'show' : 'list';
     var restEntry = this.$scope.entry.transformToRest(view.fields());
     this.progression.start();
     this.WriteQueries
