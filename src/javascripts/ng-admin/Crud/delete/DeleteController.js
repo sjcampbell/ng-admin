@@ -60,7 +60,6 @@ define(function () {
     };
 
     DeleteController.prototype.back = function() {
-        //this.$window.history.back();
         this.$state.go(this.$state.get('list'), this.$state.params);
     };
 
