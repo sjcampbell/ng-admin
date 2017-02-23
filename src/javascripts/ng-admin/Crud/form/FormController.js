@@ -72,7 +72,7 @@ FormController.prototype.submitEdition = function ($event) {
     this.progression.start();
     this.WriteQueries
         .updateOne(view, restEntry, this.originEntityId)
-        .then(() => {
+        .then(rawEntry => {
             this.progression.done();
             this.notification.log('Changes successfully saved.', { addnCls: 'humane-flatty-success' });
             var entry = view.mapEntry(rawEntry);
