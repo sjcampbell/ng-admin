@@ -65,7 +65,9 @@ FormController.prototype.submitEdition = function ($event) {
     if (!this.validateEntry()) {
         return;
     }
+    var entity = this.entity;
     var view = this.view;
+    var route = !entity.editionView().enabled ? 'show' : 'list';
     var restEntry = this.$scope.entry.transformToRest(view.fields());
     this.progression.start();
     this.WriteQueries
@@ -73,6 +75,8 @@ FormController.prototype.submitEdition = function ($event) {
         .then(() => {
             this.progression.done();
             this.notification.log('Changes successfully saved.', { addnCls: 'humane-flatty-success' });
+            var entry = view.mapEntry(rawEntry);
+            this.$state.go(this.$state.get(route), { entity: entity.name(), id: entry.identifierValue });
         }, this.handleError.bind(this));
 };
 
